@@ -1,3 +1,9 @@
 export { Header } from './Header';
 export { Container } from './Container';
 export { Title } from './Title';
+export { Categories } from './Categories';
+export { SortPopup } from './SortPopup';
+export { Filters } from './Filters';
+export { TopBar } from './TopBar';
+export { RangeSlider } from './RangeSlider';
+export { CheckboxFiltersGroup } from './CheckboxFiltersGroup';
