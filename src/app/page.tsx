@@ -1,4 +1,10 @@
-import { Container, Filters, Title, TopBar } from '@/components/shared';
+import {
+  Container,
+  Filters,
+  Title,
+  TopBar,
+  ProductsGroupList,
+} from '@/components/shared';
 import { Suspense } from 'react';
 
 export default function Home() {
@@ -22,16 +28,167 @@ export default function Home() {
             <div className="flex flex-col gap-16">
               {/* {categories.map(
                 (category) =>
-                  category.products.length > 0 && (
-                    <ProductsGroupList
-                      key={category.id}
-                      title={category.name}
-                      categoryId={category.id}
-                      items={category.products}
-                    />
-                  ),
+                  category.products.length > 0 && ( */}
+              <ProductsGroupList
+                key={'pizza'}
+                title={'Пицца'}
+                categoryId={1}
+                items={[
+                  {
+                    id: 1,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 2,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 3,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 4,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 5,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 6,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                ]}
+              />
+              <ProductsGroupList
+                key={'product'}
+                title={'Завтрак'}
+                categoryId={2}
+                items={[
+                  {
+                    id: 1,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 2,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 3,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 4,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 5,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                  {
+                    id: 6,
+                    name: 'Пицца',
+                    imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EF38570B8F74A3A71E200F82DCAEB8.avif',
+                    items: [
+                      {
+                        id: 1,
+                        name: 'Пицца',
+                        price: 150,
+                      },
+                    ],
+                  },
+                ]}
+              />
+              {/* ),
               )} */}
-              Список товаров
             </div>
           </div>
         </div>

@@ -1,4 +1,7 @@
+'use client';
+
 import { cn } from '@/lib/utils';
+import { useCategoryStore } from '@/store/category';
 import { FC } from 'react';
 
 interface CategoriesProps {
@@ -9,25 +12,25 @@ interface CategoriesProps {
 const items = [
   {
     name: 'Пицца',
-    id: 'pizza',
+    id: 1,
   },
   {
-    name: 'Суши',
-    id: 'sushi',
+    name: 'Завтрак',
+    id: 2,
   },
   {
     name: 'Роллы',
-    id: 'rolls',
+    id: 3,
   },
   {
     name: 'Напитки',
-    id: 'drinks',
+    id: 4,
   },
 ];
 
 export const Categories: FC<CategoriesProps> = (props) => {
   const { className } = props;
-  const categoryActiveId = 'pizza';
+  const categoryActiveId = useCategoryStore((state) => state.activeId);
   return (
     <div
       className={cn('inline-flex gap-1 bg-gray-50 p-1 rounded-2xl', className)}>
