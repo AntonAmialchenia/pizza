@@ -1,8 +1,11 @@
+'use client';
+
 import { FC } from 'react';
 import { Title } from './Title';
 import { RangeSlider } from './RangeSlider';
 import { CheckboxFiltersGroup } from './CheckboxFiltersGroup';
 import { Input } from '../ui';
+import { useFilters, useIngredients, useQueryFilters } from '@/hooks';
 
 interface FiltersProps {
   className?: string;
@@ -10,6 +13,22 @@ interface FiltersProps {
 
 export const Filters: FC<FiltersProps> = (props) => {
   const { className } = props;
+  const { ingredients,loading } = useIngredients();
+  const filters = useFilters();
+
+  useQueryFilters(filters)
+
+  const items = ingredients.map((item) => ({
+    value: item.id + '',
+    text: item.name,
+  }));
+
+  const updatePrices = (prices: number[]) => {
+    console.log(prices, 999);
+    filters.setPrices('priceFrom', prices[0]);
+    filters.setPrices('priceTo', prices[1]);
+  };
+  
   return (
     <div className={className}>
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
@@ -18,8 +37,8 @@ export const Filters: FC<FiltersProps> = (props) => {
         title="Тип теста"
         name="pizzaTypes"
         className="mb-5"
-        // onClickCheckbox={filters.setPizzaTypes}
-        // selected={filters.pizzaTypes}
+        onClickCheckbox={filters.setPizzaTypes}
+        selected={filters.pizzaTypes}
         items={[
           { text: 'Тонкое', value: '1' },
           { text: 'Традиционное', value: '2' },
@@ -30,8 +49,8 @@ export const Filters: FC<FiltersProps> = (props) => {
         title="Размеры"
         name="sizes"
         className="mb-5"
-        // onClickCheckbox={filters.setSizes}
-        // selected={filters.sizes}
+        onClickCheckbox={filters.setSizes}
+        selected={filters.sizes}
         items={[
           { text: '20 см', value: '20' },
           { text: '30 см', value: '30' },
@@ -48,16 +67,16 @@ export const Filters: FC<FiltersProps> = (props) => {
             placeholder="0"
             min={0}
             max={1000}
-            // value={String(filters.prices.priceFrom)}
-            // onChange={(e) => filters.setPrices('priceFrom', Number(e.target.value))}
+            value={String(filters.prices.priceFrom)}
+            onChange={(e) => filters.setPrices('priceFrom', Number(e.target.value))}
           />
           <Input
             type="number"
             min={100}
             max={1000}
             placeholder="1000"
-            // value={String(filters.prices.priceTo)}
-            // onChange={(e) => filters.setPrices('priceTo', Number(e.target.value))}
+            value={String(filters.prices.priceTo)}
+            onChange={(e) => filters.setPrices('priceTo', Number(e.target.value))}
           />
         </div>
 
@@ -65,8 +84,8 @@ export const Filters: FC<FiltersProps> = (props) => {
           min={0}
           max={1000}
           step={10}
-          //   value={[filters.prices.priceFrom || 0, filters.prices.priceTo || 1000]}
-          //   onValueChange={updatePrices}
+            value={[filters.prices.priceFrom || 0, filters.prices.priceTo || 1000]}
+            onValueChange={updatePrices}
         />
       </div>
 
@@ -75,33 +94,11 @@ export const Filters: FC<FiltersProps> = (props) => {
         name="ingredients"
         className="mt-5"
         limit={6}
-        items={[
-          { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-		  { text: 'Тонкое', value: '1' },
-          { text: 'Традиционное', value: '2' },
-        ]}
-        // defaultItems={items.slice(0, 6)}
-        // items={items}
-        // loading={loading}
-        // onClickCheckbox={filters.setSelectedIngredients}
-        // selected={filters.selectedIngredients}
+        items={items}
+        defaultItems={items.slice(0, 6)}
+        loading={loading}
+        onClickCheckbox={filters.setSelectedIngredients}
+        selected={filters.selectedIngredients}
       />
     </div>
   );
